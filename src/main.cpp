@@ -2,6 +2,15 @@
 using namespace std;
 int main()
 {
-	cout << "Hi";
-	cin.get();
+	try{
+	
+		return 0;
+	}
+	catch (_exception& e) {
+
+	}
+	catch (...) {
+
+		return 1;
+	}
 }
