@@ -26,6 +26,3 @@ private:
 	bool full {false};
 	Token buffer;
 };
-
-
-Token_stream ts;

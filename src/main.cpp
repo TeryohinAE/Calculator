@@ -1,15 +1,20 @@
 #include <iostream>
 #include <exception>
 #include "Leksems.hpp"
+#include <Windows.h>
 using namespace std;
 int main()
 {
-	try{
-		while (cin)
+	try
+	{
+		SetConsoleOutputCP(1251);
+		SetConsoleCP(1251);
+
+		for (bool i = true; i == true; exit(i))
 		{
 			cout << expression() << endl;
 		}
-		cin.get();
+
 		return 0;
 	}
 	catch (_exception& e) {

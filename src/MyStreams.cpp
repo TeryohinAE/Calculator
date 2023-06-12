@@ -27,7 +27,7 @@ Token_stream::Token_stream() {}
 
 Token Token_stream::get() {
 	if (full) {											//Проверка буфера и вывод из него, если он полный
-		full == false;
+		full = false;
 		return buffer;
 	}
 
@@ -36,7 +36,8 @@ Token Token_stream::get() {
 
 	switch (ch)
 	{
-	case ';': case 'q':									//Символы для выхода
+	case ';': case 'q':	case '=':								//Символы для выхода
+		std::cout << "=";
 		return Token{ ch };
 
 	case '(': case ')': case '+':						//Символы мат операций
@@ -59,7 +60,7 @@ Token Token_stream::get() {
 }
 
 void Token_stream::putback(Token t) {
-	if (full == false)
+	if (full == true)
 		throw _exception();
 	buffer = t;
 	full = true;

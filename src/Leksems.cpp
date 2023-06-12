@@ -1,6 +1,38 @@
 #include "Leksems.hpp"
 #include <exception>
 #include"MyStreams.hpp"
+#include <iostream>
+#include <algorithm>
+
+
+Token_stream ts;
+
+
+
+
+
+void exit(bool& i)
+{
+	bool j = false;
+	while (j == false)
+	{
+		std::cout << "Вы хотите продолжить? (yes/no)" << std::endl;
+		std::string answer;
+		std::cin >> answer;
+		std::transform(answer.begin(), answer.end(), answer.begin(), tolower);
+
+		if (answer == "no") {
+			i = false;
+			j = true;
+		}
+		else if (answer == "yes") {
+			i = true;
+			j = true;
+		}
+		else
+			std::cout << "Неправильный ответ, введите ответ снова" << std::endl;
+	}
+}
 
 
 
@@ -10,9 +42,9 @@
 
 double expression() {
 	double left = term();
-	Token t = get_token();
+	Token t = ts.get();
 
-	while (t.type == '+' || t.type == '-')
+	while (true)
 	{
 		switch (t.type)
 		{
@@ -25,20 +57,21 @@ double expression() {
 			break;
 
 		default:
-			throw _exception();
+			ts.putback(t);
+			return left;
 		}
-		t = get_token();
+		t = ts.get();
 	}
-	return left;
+	throw _exception();
 }
 
 
 
 double term() {
 	double left = primary();
-	Token t = get_token();
+	Token t = ts.get();
 	
-	while (t.type == '*' || t.type == '/')
+	while (true)
 	{
 		switch (t.type)
 		{
@@ -55,24 +88,25 @@ double term() {
 		}
 
 		default:
-			throw _exception();
+			ts.putback(t);
+			return left;
 		}
-		t = get_token();
+		t = ts.get();
 	}
-	return left;
+	throw _exception();
 }
 
 
 
 double primary() {
-	Token t = get_token();
+	Token t = ts.get();
 
 	switch (t.type)
 	{
 	case '(': 
 	{
 		double d = expression();
-		t = get_token;
+		t = ts.get();
 		if (t.type != ')')
 			throw _exception();
 		return d;
