@@ -2,7 +2,6 @@
 #include <exception>
 #include "Leksems.hpp"
 #include <Windows.h>
-using namespace std;
 int main()
 {
 	try
@@ -12,19 +11,21 @@ int main()
 
 		for (bool i = true; i == true; exit(i))
 		{
-			cout << expression() << endl;
+			std::cout << "Введите пример для решения, при этом закончите его символом равно,\n" <<
+			"точкой с запятой или английской буквой \"q\"" << std::endl;
+			std::cout << expression() << std::endl;
 		}
 
 		return 0;
 	}
 	catch (_exception& e) {
-		cerr << e.name << endl;
-		cin.get();
+		std::cerr << e.name << std::endl;
+		std::cin.get();
 		return 1;
 	}
 	catch (...) {
-		cerr << "unknow error\n";
-		cin.get();
+		std::cerr << "unknow error\n";
+		std::cin.get();
 		return 2;
 	}
 }

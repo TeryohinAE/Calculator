@@ -28,6 +28,7 @@ void exit(bool& i)
 		else if (answer == "yes") {
 			i = true;
 			j = true;
+			ts.clear_buffer();
 		}
 		else
 			std::cout << "Неправильный ответ, введите ответ снова" << std::endl;

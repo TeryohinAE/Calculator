@@ -21,6 +21,7 @@ public:
 	
 	Token get();
 	void putback(Token t);
+	void clear_buffer();
 
 private:
 	bool full {false};
