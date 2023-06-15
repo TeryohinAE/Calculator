@@ -9,6 +9,8 @@ int main()
 		SetConsoleOutputCP(1251);
 		SetConsoleCP(1251);
 
+		std::cout << "Hi\n";
+
 		for (bool i = true; i == true; exit(i))
 		{
 			std::cout << "Введите пример для решения, при этом закончите его символом равно,\n" <<
